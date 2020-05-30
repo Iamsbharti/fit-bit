@@ -12,6 +12,9 @@ let app = express();
 //listen to requests
 app.listen(port, console.log(`API Server Started at -${port}`));
 
+//set body parser (url encoded) and cors
+app.use(cors(), bodyParser.urlencoded({ extended: true }), bodyParser.json());
+
 app.get("/", (req, res) => {
   console.log(req);
   res.send("Get works");
