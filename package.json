@@ -26,6 +26,7 @@
     "start": "react-scripts start",
     "server": "node src/server",
     "startdb": "node src/server/connect-db.js",
+    "init": "node src/server/initialize-db.js",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"

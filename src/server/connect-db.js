@@ -4,7 +4,11 @@ let db = null;
 export async function connectDb() {
   if (db) return db;
 
-  let client = await MongoClient.connect(URL, { useNewUrlParser: true });
+  let client = await MongoClient.connect(
+    URL,
+    { useNewUrlParser: true },
+    { useUnifiedTopology: true }
+  );
   db = client.db();
   console.info("Database connected");
 
