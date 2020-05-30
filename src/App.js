@@ -1,10 +1,13 @@
 import React from "react";
-import { muscles, exercises } from "./redux/defaultStore";
+import "./index.css";
+import { Container } from "@material-ui/core";
+import NavBar from "./components/NavBar";
 function App() {
-  console.log(muscles, exercises);
   return (
     <div className="App">
-      <h1>Fit-bit</h1>
+      <Container>
+        <NavBar />
+      </Container>
     </div>
   );
 }
