@@ -1,10 +1,11 @@
 import { GET_MUSCLES } from "../actions/actionTypes";
-
-export default function (muscles = [], action) {
+import { muscles } from "../defaultStore";
+export default function (_muscles = muscles, action) {
+  console.log("reducer", action.muscles);
   switch (action.type) {
     case GET_MUSCLES:
-      return action.muscles;
+      return action.muscles === undefined ? _muscles : muscles;
     default:
-      return muscles;
+      return _muscles;
   }
 }

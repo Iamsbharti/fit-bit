@@ -1,5 +1,6 @@
 import React, { Fragment } from "react";
 import { Grid, Paper } from "@material-ui/core";
+import { ToastContainer } from "react-toastify";
 export default function () {
   const styles = {
     padding: 20,
@@ -18,6 +19,7 @@ export default function () {
           <Paper style={styles}>Right</Paper>
         </Grid>
       </Grid>
+      <ToastContainer autoClose={2000} hideProgressBar />
     </Fragment>
   );
 }
