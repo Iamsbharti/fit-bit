@@ -12,7 +12,7 @@ function Footer({ muscles, getMuscles }) {
   useEffect(() => {
     getMuscles();
   }, [getMuscles]);
-  console.log("muscles", muscles);
+
   return (
     <Paper>
       <Tabs value={value} onChange={handleChange} textColor="primary" centered>
