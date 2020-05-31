@@ -4,7 +4,7 @@ export default function (_muscles = muscles, action) {
   console.log("reducer", action.muscles);
   switch (action.type) {
     case GET_MUSCLES:
-      return action.muscles === undefined ? _muscles : muscles;
+      return [..._muscles, action.muscles];
     default:
       return _muscles;
   }

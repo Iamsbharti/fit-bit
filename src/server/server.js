@@ -3,6 +3,7 @@ import bodyParser from "body-parser";
 import cors from "cors";
 import path from "path";
 import { getMusclesRoute } from "./getMusclesRoute.js";
+import { exercisesRoute } from "./exercisesRoute.js";
 //initialize a port
 let port = process.env.PORT || "4200";
 
@@ -22,3 +23,6 @@ app.get("/", async (req, res) => {
 });
 //get muscles route
 getMusclesRoute(app);
+
+//get exercises route
+exercisesRoute(app);
