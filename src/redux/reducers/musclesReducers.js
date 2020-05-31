@@ -1,4 +1,4 @@
-import { SHOW_MUSCLES } from "../actions/actionTypes";
+import { GET_MUSCLES } from "../actions/actionTypes";
 
 export default function (muscles = [], action) {
   return {};

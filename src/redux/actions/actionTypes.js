@@ -1,5 +1,5 @@
-export const SHOW_EXERCISES = "SHOW_EXERCISES";
+export const GET_EXERCISES = "GET_EXERCISES";
 export const ADD_EXERCISE = "ADD_EXERCISE";
 export const EDIT_EXERCISE = "EDIT_EXERCISE";
 export const DELETE_EXERCISE = "DELETE_EXERCISE";
-export const SHOW_MUSCLES = "SHOW_MUSCLES";
+export const GET_MUSCLES = "GET_MUSCLES";
