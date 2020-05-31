@@ -1,13 +1,12 @@
-import React, { Fragment } from "react";
+import React from "react";
 import {
   AppBar,
   Typography,
   IconButton,
   Button,
-  Icon,
   Toolbar,
 } from "@material-ui/core";
-import { MenuOutlined, NoteAdd } from "@material-ui/icons";
+import { MenuOutlined, AddBoxOutlined } from "@material-ui/icons";
 export default function () {
   const styles = {
     marginTop: 12,
@@ -16,13 +15,14 @@ export default function () {
     <div>
       <AppBar position="static" style={styles}>
         <Toolbar>
-          <IconButton edge="start">
+          <IconButton>
             <MenuOutlined />
           </IconButton>
-          <Typography>Move It</Typography>
-          <IconButton edge="end">
-            <NoteAdd />
-          </IconButton>
+          <Typography style={{ flex: 1 }}>Move It</Typography>
+          <Button edge="end">
+            <AddBoxOutlined />
+            Add Exercise
+          </Button>
         </Toolbar>
       </AppBar>
     </div>
