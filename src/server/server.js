@@ -2,7 +2,7 @@ import express from "express";
 import bodyParser from "body-parser";
 import cors from "cors";
 import path from "path";
-
+import { getMusclesRoute } from "./getMusclesRoute.js";
 //initialize a port
 let port = process.env.PORT || "4200";
 
@@ -15,11 +15,10 @@ app.listen(port, console.log(`API Server Started at -${port}`));
 //set body parser (url encoded) and cors
 app.use(cors(), bodyParser.urlencoded({ extended: true }), bodyParser.json());
 
+//test api path
 app.get("/", async (req, res) => {
   console.log(req.body);
   res.send("Get works");
 });
-app.get("/getMuscles", async (req, res) => {
-  console.log("get muscles call");
-  res.status(200).send("muscles returned");
-});
+//get muscles route
+getMusclesRoute(app);
