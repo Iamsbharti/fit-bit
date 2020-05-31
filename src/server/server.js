@@ -15,7 +15,11 @@ app.listen(port, console.log(`API Server Started at -${port}`));
 //set body parser (url encoded) and cors
 app.use(cors(), bodyParser.urlencoded({ extended: true }), bodyParser.json());
 
-app.get("/", (req, res) => {
+app.get("/", async (req, res) => {
   console.log(req.body);
   res.send("Get works");
+});
+app.get("/getMuscles", async (req, res) => {
+  console.log("get muscles call");
+  res.status(200).send("muscles returned");
 });

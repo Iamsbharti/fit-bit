@@ -1,7 +1,7 @@
 import { createStore, applyMiddleware, compose } from "redux";
 import reduxImmutableStateInvariant from "redux-immutable-state-invariant";
 import rootReducers from "./reducers";
-import { thunk } from "redux-thunk";
+import thunk from "redux-thunk";
 
 export default function configureStore() {
   //add support for chrome redux-dev-tools
