@@ -1,4 +1,4 @@
-import React, { Fragment, useEffect } from "react";
+import React, { Fragment } from "react";
 import { Grid, Paper } from "@material-ui/core";
 import { ToastContainer } from "react-toastify";
 import { connect } from "react-redux";
@@ -12,11 +12,9 @@ function ExerciseContent({ exercises, getExercises }) {
     overflowY: "auto",
   };
   //dispatch action upon component load
-  useEffect(() => {
-    if (exercises === undefined) {
-      getExercises();
-    }
-  }, [exercises]);
+  if (exercises !== undefined) {
+    getExercises();
+  }
   console.log(exercises);
   return (
     <Fragment>

@@ -5,7 +5,7 @@ import {
   EDIT_EXERCISE,
 } from "../actions/actionTypes";
 import { exercises } from "../defaultStore";
-export default function (_exercises = exercises, action) {
+export default function (_exercises = [], action) {
   switch (action.type) {
     case GET_EXERCISES:
       return action.exercises;
