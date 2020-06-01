@@ -1,5 +1,13 @@
 import React, { Fragment, useEffect } from "react";
-import { Grid, Paper } from "@material-ui/core";
+import {
+  Grid,
+  Paper,
+  List,
+  ListItem,
+  ListItemIcon,
+  Typography,
+  capitalize,
+} from "@material-ui/core";
 import { ToastContainer } from "react-toastify";
 import { connect } from "react-redux";
 import { getExercises } from "../redux/actions/exercisesAction";
@@ -18,12 +26,21 @@ function ExerciseContent({ exercises, getExercises, muscles }) {
       getExercises();
     }
   }, [getExercises, exercises.length]);
-
+  console.log(exercises);
+  const typoStyles = {
+    textTransaform: capitalize,
+  };
   return (
     <Fragment>
       <Grid container spacing={2} style={{ marginTop: 3 }}>
         <Grid item sm>
-          <Paper style={styles}>Left</Paper>
+          <Paper style={styles}>
+            {exercises.map(([group, exercise]) => (
+              <Typography style={typoStyles}>
+                {group !== undefined ? group : ""}
+              </Typography>
+            ))}
+          </Paper>
         </Grid>
         <Grid item sm>
           <Paper style={styles}>Right</Paper>
