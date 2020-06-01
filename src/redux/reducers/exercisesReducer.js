@@ -1,16 +1,10 @@
-import {
-  GET_EXERCISES,
-  ADD_EXERCISE,
-  DELETE_EXERCISE,
-  EDIT_EXERCISE,
-} from "../actions/actionTypes";
-import { exercises } from "../defaultStore";
+import { GET_EXERCISES } from "../actions/actionTypes";
 export default function (_exercises = [], action) {
   console.log("reducers");
   switch (action.type) {
     case GET_EXERCISES:
       return action.exercises;
     default:
-      return exercises;
+      return _exercises;
   }
 }
