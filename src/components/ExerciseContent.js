@@ -12,10 +12,13 @@ function ExerciseContent({ exercises, getExercises, muscles }) {
     overflowY: "auto",
   };
   //dispatch action upon component load
+
   useEffect(() => {
-    getExercises();
-  }, [muscles]);
-  console.log(exercises);
+    if (exercises.length === 0) {
+      getExercises();
+    }
+  }, [getExercises, exercises.length]);
+
   return (
     <Fragment>
       <Grid container spacing={2} style={{ marginTop: 3 }}>
@@ -31,7 +34,6 @@ function ExerciseContent({ exercises, getExercises, muscles }) {
   );
 }
 const getExercisesByMuscles = (muscles, exercisesList) => {
-  console.log(exercisesList);
   const initExercises = muscles.reduce(
     (exercises, category) => ({
       ...exercises,
@@ -48,10 +50,13 @@ const getExercisesByMuscles = (muscles, exercisesList) => {
     }, initExercises)
   );
 };
-const mapStateToProps = ({ muscles, exercises }, ownProps) => ({
-  muscles,
-  exercises: getExercisesByMuscles(muscles, exercises),
-});
+function mapStateToProps({ muscles, exercises }) {
+  return {
+    exercises:
+      exercises.length !== 0 ? getExercisesByMuscles(muscles, exercises) : [],
+    muscles,
+  };
+}
 const mapActionsToProps = {
   getExercises,
 };
