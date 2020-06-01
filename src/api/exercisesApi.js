@@ -4,7 +4,7 @@ import { toast } from "react-toastify";
 export async function exercisesApi() {
   try {
     let { data, status } = await axios.get(url + "/getExercises");
-    console.log(data, status);
+    console.log("api-exer");
     if (data && status === 200) {
       toast.success("Exercises fetched");
       return data;

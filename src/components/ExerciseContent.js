@@ -3,7 +3,7 @@ import { Grid, Paper } from "@material-ui/core";
 import { ToastContainer } from "react-toastify";
 import { connect } from "react-redux";
 import { getExercises } from "../redux/actions/exercisesAction";
-function ExerciseContent({ exercises, getExercises }) {
+function ExerciseContent({ exercises, getExercises, muscles }) {
   const styles = {
     padding: 20,
     marginTop: 20,
@@ -12,7 +12,8 @@ function ExerciseContent({ exercises, getExercises }) {
     overflowY: "auto",
   };
   //dispatch action upon component load
-  if (exercises !== undefined) {
+  if (muscles && exercises === undefined) {
+    console.log("dispatch action");
     getExercises();
   }
   console.log(exercises);
@@ -30,13 +31,27 @@ function ExerciseContent({ exercises, getExercises }) {
     </Fragment>
   );
 }
-const mapStateToProps = (state, ownProps) => ({
-  exercises: state.exercises.reduce((exercises, exercise) => {
-    let { muscles } = exercise;
-    exercises = [muscles] ? { ...exercise } : "";
-    console.log(exercises);
-    return "";
-  }, {}),
+const getExercisesByMuscles = (muscles, exercisesList) => {
+  //console.log(muscles, exercisesList);
+  const initExercises = muscles.reduce(
+    (exercises, category) => ({
+      ...exercises,
+      [category.name]: [],
+    }),
+    {}
+  );
+  return Object.entries(
+    exercisesList.reduce((exercises, exercise) => {
+      const { muscles } = exercise;
+      // console.log(muscles);
+      exercises[muscles] = [...exercises[muscles], exercise];
+      return exercises;
+    }, initExercises)
+  );
+};
+const mapStateToProps = ({ muscles, exercises }, ownProps) => ({
+  muscles,
+  exercises: getExercisesByMuscles(muscles, exercises),
 });
 const mapActionsToProps = {
   getExercises,
