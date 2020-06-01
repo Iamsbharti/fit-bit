@@ -8,7 +8,7 @@ import { exercises } from "../defaultStore";
 export default function (_exercises = exercises, action) {
   switch (action.type) {
     case GET_EXERCISES:
-      return [..._exercises, action.exercises];
+      return action.exercises;
     default:
       return exercises;
   }

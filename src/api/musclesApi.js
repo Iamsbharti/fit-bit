@@ -4,7 +4,7 @@ import { toast } from "react-toastify";
 export async function musclesApi() {
   try {
     let { data, status } = await axios.get(url + "/getMuscles");
-    console.log(data, status);
+    //console.log(data, status);
     if (status === 200) {
       toast.success("Muscles Fetched");
       return data;

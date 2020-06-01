@@ -5,7 +5,7 @@ export async function exercisesRoute(app) {
     //intiliaze db
     let db = await connectDb();
     //get exercises collection
-    let exercises = db.collection("exercises").find().toArray();
+    let exercises = await db.collection("exercises").find().toArray();
     res.status(200).send(exercises);
   });
 }
