@@ -25,11 +25,11 @@ function ExerciseContent({ exercises, getExercises, muscles }) {
 
   useEffect(() => {
     if (exercises.length === 0) {
-      console.log("useEffect");
+      //console.log("useEffect");
       getExercises();
     }
   }, [getExercises, exercises.length]);
-  console.log("render-exercise", exercises.length);
+  //console.log("render-exercise", exercises.length);
 
   return (
     <Fragment>
@@ -37,7 +37,7 @@ function ExerciseContent({ exercises, getExercises, muscles }) {
         <Grid item sm>
           <Paper style={styles}>
             {exercises.map(([group, exercise]) => (
-              <Fragment>
+              <Fragment key={group}>
                 <Typography
                   variant="h6"
                   style={{ textTransform: "capitalize" }}
@@ -48,6 +48,9 @@ function ExerciseContent({ exercises, getExercises, muscles }) {
                   {exercise.map(({ title, id }) => (
                     <ListItem key={id}>
                       <ListItemText primary={title} />
+                      <IconButton>
+                        <Edit />
+                      </IconButton>
                       <ListItemSecondaryAction>
                         <IconButton edge="end">
                           <Delete />
@@ -76,7 +79,7 @@ const getExercisesByMuscles = (muscles, exercisesList) => {
     }),
     {}
   );
-  console.log("init", initExercises);
+  //console.log("init", initExercises);
   return Object.entries(
     exercisesList.reduce((exercises, exercise) => {
       const { muscles } = exercise;
@@ -86,7 +89,7 @@ const getExercisesByMuscles = (muscles, exercisesList) => {
   );
 };
 function mapStateToProps({ muscles, exercises }) {
-  console.log("state");
+  //  console.log("state");
   return {
     exercises:
       exercises.length !== 0
