@@ -47,6 +47,9 @@ function ExerciseContent({
     //console.log(selectedExercise);
     setExercise(selectedExercise);
   };
+  useEffect(() => {
+    setExercise("");
+  }, [category]);
   //console.log(exercise);
   return (
     <Fragment>
