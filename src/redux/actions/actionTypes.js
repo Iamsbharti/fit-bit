@@ -3,3 +3,4 @@ export const ADD_EXERCISE = "ADD_EXERCISE";
 export const EDIT_EXERCISE = "EDIT_EXERCISE";
 export const DELETE_EXERCISE = "DELETE_EXERCISE";
 export const GET_MUSCLES = "GET_MUSCLES";
+export const SET_CATEGORY = "SET_CATEGORY";

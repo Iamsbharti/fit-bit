@@ -2,10 +2,14 @@ import React, { useState, useEffect } from "react";
 import { Tabs, Tab, Paper } from "@material-ui/core";
 import { connect } from "react-redux";
 import { getMuscles } from "../redux/actions/musclesAction";
+import { setCategory } from "../redux/actions/categoryAction";
 
-function Footer({ muscles, getMuscles }) {
+function Footer({ muscles, getMuscles, setCategory }) {
   const [value, setValue] = useState(0);
   const handleChange = (event, newValue) => {
+    console.log(newValue, muscles[newValue - 1]);
+    let category = muscles[newValue - 1];
+    setCategory(category === undefined ? "" : category);
     setValue(newValue);
   };
 
@@ -29,6 +33,7 @@ const mapStateToProps = (state) => ({
 });
 const mapActionToProps = {
   getMuscles,
+  setCategory,
 };
 
 export default connect(mapStateToProps, mapActionToProps)(Footer);
