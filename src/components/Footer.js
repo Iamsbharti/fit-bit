@@ -17,8 +17,8 @@ function Footer({ muscles, getMuscles }) {
     <Paper>
       <Tabs value={value} onChange={handleChange} textColor="primary" centered>
         <Tab label="All"></Tab>
-        {muscles.map((group) => (
-          <Tab key={group.id} label={group.name}></Tab>
+        {muscles.map((group, index) => (
+          <Tab key={index} label={group.name}></Tab>
         ))}
       </Tabs>
     </Paper>

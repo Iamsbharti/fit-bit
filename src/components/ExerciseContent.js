@@ -23,22 +23,31 @@ function ExerciseContent({ exercises, getExercises, muscles }) {
 
   useEffect(() => {
     if (exercises.length === 0) {
+      console.log("useEffect");
       getExercises();
     }
   }, [getExercises, exercises.length]);
-  console.log(exercises);
-  const typoStyles = {
-    textTransaform: capitalize,
-  };
+  console.log("render-exercise", exercises.length);
+
   return (
     <Fragment>
       <Grid container spacing={2} style={{ marginTop: 3 }}>
         <Grid item sm>
           <Paper style={styles}>
             {exercises.map(([group, exercise]) => (
-              <Typography style={typoStyles}>
-                {group !== undefined ? group : ""}
-              </Typography>
+              <Fragment>
+                <Typography
+                  variant="h6"
+                  style={{ textTransform: "capitalize" }}
+                >
+                  {group}
+                </Typography>
+                <List component="ul" key={group}>
+                  {exercise.map(({ title, id }) => (
+                    <ListItem key={id}>{title}</ListItem>
+                  ))}
+                </List>
+              </Fragment>
             ))}
           </Paper>
         </Grid>
@@ -58,19 +67,22 @@ const getExercisesByMuscles = (muscles, exercisesList) => {
     }),
     {}
   );
+  console.log("init", initExercises);
   return Object.entries(
     exercisesList.reduce((exercises, exercise) => {
       const { muscles } = exercise;
-      // console.log(muscles);
       exercises[muscles] = [...exercises[muscles], exercise];
       return exercises;
     }, initExercises)
   );
 };
 function mapStateToProps({ muscles, exercises }) {
+  console.log("state");
   return {
     exercises:
-      exercises.length !== 0 ? getExercisesByMuscles(muscles, exercises) : [],
+      exercises.length !== 0
+        ? getExercisesByMuscles(muscles, exercises)
+        : exercises,
     muscles,
   };
 }
