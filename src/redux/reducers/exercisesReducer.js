@@ -4,6 +4,7 @@ export default function (_exercises = [], action) {
   switch (action.type) {
     case GET_EXERCISES:
       return action.exercises;
+
     default:
       return _exercises;
   }

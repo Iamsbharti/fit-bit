@@ -1,4 +1,4 @@
-import React, { Fragment, useEffect } from "react";
+import React, { Fragment, useEffect, useState } from "react";
 import {
   Grid,
   Paper,
@@ -13,7 +13,13 @@ import { Edit, Delete } from "@material-ui/icons";
 import { ToastContainer } from "react-toastify";
 import { connect } from "react-redux";
 import { getExercises } from "../redux/actions/exercisesAction";
-function ExerciseContent({ exercises, getExercises, muscles, category }) {
+function ExerciseContent({
+  exercises,
+  getExercises,
+  muscles,
+  category,
+  rawExercisesObj,
+}) {
   const styles = {
     padding: 20,
     marginTop: 20,
@@ -22,13 +28,20 @@ function ExerciseContent({ exercises, getExercises, muscles, category }) {
     overflowY: "auto",
   };
   //dispatch action upon component load
-
   useEffect(() => {
     if (exercises.length === 0) {
       getExercises();
     }
   }, [getExercises, exercises.length]);
-
+  console.log(category);
+  //selected exercise
+  const [exercise, setExercise] = useState([]);
+  const handleItemClick = (id) => {
+    console.log(id);
+    let selectedExercise = rawExercisesObj.find((exe) => exe.id === id);
+    console.log(selectedExercise);
+    setExercise(selectedExercise);
+  };
   return (
     <Fragment>
       <Grid container spacing={2} style={{ marginTop: 3 }}>
@@ -46,7 +59,10 @@ function ExerciseContent({ exercises, getExercises, muscles, category }) {
                   <List component="ul" key={group}>
                     {exercise.map(({ title, id }) => (
                       <ListItem key={id}>
-                        <ListItemText primary={title} />
+                        <ListItemText
+                          primary={title}
+                          onClick={() => handleItemClick(id)}
+                        />
                         <IconButton>
                           <Edit />
                         </IconButton>
@@ -96,6 +112,7 @@ function mapStateToProps({ muscles, exercises, category }) {
         : exercises,
     muscles,
     category,
+    rawExercisesObj: exercises,
   };
 }
 const mapActionsToProps = {
