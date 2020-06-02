@@ -4,10 +4,12 @@ import {
   Paper,
   List,
   ListItem,
-  ListItemIcon,
+  ListItemText,
   Typography,
-  capitalize,
+  ListItemSecondaryAction,
+  IconButton,
 } from "@material-ui/core";
+import { Edit, Delete } from "@material-ui/icons";
 import { ToastContainer } from "react-toastify";
 import { connect } from "react-redux";
 import { getExercises } from "../redux/actions/exercisesAction";
@@ -44,7 +46,14 @@ function ExerciseContent({ exercises, getExercises, muscles }) {
                 </Typography>
                 <List component="ul" key={group}>
                   {exercise.map(({ title, id }) => (
-                    <ListItem key={id}>{title}</ListItem>
+                    <ListItem key={id}>
+                      <ListItemText primary={title} />
+                      <ListItemSecondaryAction>
+                        <IconButton edge="end">
+                          <Delete />
+                        </IconButton>
+                      </ListItemSecondaryAction>
+                    </ListItem>
                   ))}
                 </List>
               </Fragment>
