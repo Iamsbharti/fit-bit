@@ -26,6 +26,12 @@ function ExerciseContent({
     marginBottom: 20,
     height: 380,
     overflowY: "auto",
+    fontFamily: "Roboto",
+  };
+  //Right pane content for 'All' condition
+  const rightPane = {
+    title: "Descriptions",
+    description: "Select any exercise on left pane",
   };
   //dispatch action upon component load
   useEffect(() => {
@@ -33,15 +39,15 @@ function ExerciseContent({
       getExercises();
     }
   }, [getExercises, exercises.length]);
-  console.log(category);
+  //console.log(category);
   //selected exercise
-  const [exercise, setExercise] = useState([]);
+  const [exercise, setExercise] = useState({});
   const handleItemClick = (id) => {
-    console.log(id);
     let selectedExercise = rawExercisesObj.find((exe) => exe.id === id);
-    console.log(selectedExercise);
+    //console.log(selectedExercise);
     setExercise(selectedExercise);
   };
+  //console.log(exercise);
   return (
     <Fragment>
       <Grid container spacing={2} style={{ marginTop: 3 }}>
@@ -80,7 +86,21 @@ function ExerciseContent({
           </Paper>
         </Grid>
         <Grid item sm>
-          <Paper style={styles}>Right</Paper>
+          <Paper style={styles}>
+            {exercise.title ? (
+              <Fragment>
+                <Typography variant="h4">{exercise.title}</Typography>
+                <br />
+                <Typography variant="h5">{exercise.description}</Typography>
+              </Fragment>
+            ) : (
+              <Fragment>
+                <Typography variant="h4">{rightPane.title}</Typography>
+                <br />
+                <Typography variant="h5">{rightPane.description}</Typography>
+              </Fragment>
+            )}
+          </Paper>
         </Grid>
       </Grid>
       <ToastContainer autoClose={2000} hideProgressBar />
