@@ -13,7 +13,7 @@ import { Edit, Delete } from "@material-ui/icons";
 import { ToastContainer } from "react-toastify";
 import { connect } from "react-redux";
 import { getExercises } from "../redux/actions/exercisesAction";
-function ExerciseContent({ exercises, getExercises, muscles }) {
+function ExerciseContent({ exercises, getExercises, muscles, category }) {
   const styles = {
     padding: 20,
     marginTop: 20,
@@ -25,42 +25,42 @@ function ExerciseContent({ exercises, getExercises, muscles }) {
 
   useEffect(() => {
     if (exercises.length === 0) {
-      //console.log("useEffect");
       getExercises();
     }
   }, [getExercises, exercises.length]);
-  //console.log("render-exercise", exercises.length);
 
   return (
     <Fragment>
       <Grid container spacing={2} style={{ marginTop: 3 }}>
         <Grid item sm>
           <Paper style={styles}>
-            {exercises.map(([group, exercise]) => (
-              <Fragment key={group}>
-                <Typography
-                  variant="h6"
-                  style={{ textTransform: "capitalize" }}
-                >
-                  {group}
-                </Typography>
-                <List component="ul" key={group}>
-                  {exercise.map(({ title, id }) => (
-                    <ListItem key={id}>
-                      <ListItemText primary={title} />
-                      <IconButton>
-                        <Edit />
-                      </IconButton>
-                      <ListItemSecondaryAction>
-                        <IconButton edge="end">
-                          <Delete />
+            {exercises.map(([group, exercise]) =>
+              !category || category === group ? (
+                <Fragment key={group}>
+                  <Typography
+                    variant="h6"
+                    style={{ textTransform: "capitalize" }}
+                  >
+                    {group}
+                  </Typography>
+                  <List component="ul" key={group}>
+                    {exercise.map(({ title, id }) => (
+                      <ListItem key={id}>
+                        <ListItemText primary={title} />
+                        <IconButton>
+                          <Edit />
                         </IconButton>
-                      </ListItemSecondaryAction>
-                    </ListItem>
-                  ))}
-                </List>
-              </Fragment>
-            ))}
+                        <ListItemSecondaryAction>
+                          <IconButton edge="end">
+                            <Delete />
+                          </IconButton>
+                        </ListItemSecondaryAction>
+                      </ListItem>
+                    ))}
+                  </List>
+                </Fragment>
+              ) : null
+            )}
           </Paper>
         </Grid>
         <Grid item sm>
@@ -79,7 +79,7 @@ const getExercisesByMuscles = (muscles, exercisesList) => {
     }),
     {}
   );
-  //console.log("init", initExercises);
+
   return Object.entries(
     exercisesList.reduce((exercises, exercise) => {
       const { muscles } = exercise;
@@ -88,14 +88,14 @@ const getExercisesByMuscles = (muscles, exercisesList) => {
     }, initExercises)
   );
 };
-function mapStateToProps({ muscles, exercises }) {
-  //  console.log("state");
+function mapStateToProps({ muscles, exercises, category }) {
   return {
     exercises:
       exercises.length !== 0
         ? getExercisesByMuscles(muscles, exercises)
         : exercises,
     muscles,
+    category,
   };
 }
 const mapActionsToProps = {

@@ -7,9 +7,9 @@ import { setCategory } from "../redux/actions/categoryAction";
 function Footer({ muscles, getMuscles, setCategory }) {
   const [value, setValue] = useState(0);
   const handleChange = (event, newValue) => {
-    console.log(newValue, muscles[newValue - 1]);
+    //console.log(newValue, muscles[newValue - 1]);
     let category = muscles[newValue - 1];
-    setCategory(category === undefined ? "" : category);
+    setCategory(category === undefined ? "" : category.name);
     setValue(newValue);
   };
 
