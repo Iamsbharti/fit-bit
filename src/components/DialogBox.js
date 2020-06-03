@@ -1,12 +1,11 @@
 import React, { useState } from "react";
 import {
-  DialogActions,
   Dialog,
   DialogTitle,
   DialogContent,
   DialogContentText,
-  Button,
 } from "@material-ui/core";
+import InputForm from "./InputForm";
 export default function ({ open, onCloseDialog }) {
   const [openValue, setOpenValue] = useState(open);
   const handleClose = () => {
@@ -21,10 +20,8 @@ export default function ({ open, onCloseDialog }) {
           <DialogContentText>
             Enter these details and it will appear in the left pane
           </DialogContentText>
+          <InputForm />
         </DialogContent>
-        <DialogActions>
-          <Button>Create</Button>
-        </DialogActions>
       </Dialog>
     </div>
   );
