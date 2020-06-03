@@ -5,17 +5,26 @@ import {
   Select,
   MenuItem,
   InputLabel,
+  withStyles,
 } from "@material-ui/core";
 import { connect } from "react-redux";
 import PropsTypes from "prop-types";
 
-function InputForm({ category }) {
+const styles = (theme) => ({
+  FormControl: {
+    width: 300,
+    marginTop: 10,
+  },
+});
+function InputForm({ category, classes }) {
   const [title, setTilte] = useState("");
   const [muscles, setMuscles] = useState("");
   const [description, setDesc] = useState("");
+
   return (
     <Fragment>
       <TextField
+        className={classes.FormControl}
         autoFocus
         name="title"
         placeholder="exercise name"
@@ -27,7 +36,7 @@ function InputForm({ category }) {
       />
       <InputLabel htmlFor="muscles">Muscles</InputLabel>
       <Select
-        label="Muscles"
+        className={classes.FormControl}
         value={muscles}
         onChange={(e) => setMuscles(e.target.value)}
       >
@@ -38,6 +47,7 @@ function InputForm({ category }) {
         ))}
       </Select>
       <TextField
+        className={classes.FormControl}
         autoFocus
         name="description"
         value={description}
@@ -61,4 +71,4 @@ const mapStateToProps = ({ muscles }) => ({
 InputForm.propTypes = {
   category: PropsTypes.array.isRequired,
 };
-export default connect(mapStateToProps)(InputForm);
+export default connect(mapStateToProps)(withStyles(styles)(InputForm));
