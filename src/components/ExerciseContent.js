@@ -106,7 +106,7 @@ function ExerciseContent({
           </Paper>
         </Grid>
       </Grid>
-      <ToastContainer autoClose={2000} hideProgressBar />
+      <ToastContainer autoClose={1000} hideProgressBar />
     </Fragment>
   );
 }

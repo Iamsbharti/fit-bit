@@ -4,6 +4,7 @@ import cors from "cors";
 import path from "path";
 import { getMusclesRoute } from "./getMusclesRoute.js";
 import { exercisesRoute } from "./exercisesRoute.js";
+import { createExerciseRoute } from "./createExerciseRoute.js";
 //initialize a port
 let port = process.env.PORT || "4200";
 
@@ -26,3 +27,6 @@ getMusclesRoute(app);
 
 //get exercises route
 exercisesRoute(app);
+
+//create exercise route
+createExerciseRoute(app);

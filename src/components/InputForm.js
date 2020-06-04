@@ -20,7 +20,7 @@ function InputForm({ category, classes }) {
   const [title, setTilte] = useState("");
   const [muscles, setMuscles] = useState("");
   const [description, setDesc] = useState("");
-
+  const handleClick = (event) => {};
   return (
     <Fragment>
       <TextField
@@ -29,7 +29,6 @@ function InputForm({ category, classes }) {
         name="title"
         placeholder="exercise name"
         label="Exercise"
-        fullWidth
         margin="dense"
         value={title}
         onChange={(e) => setTilte(e.target.value)}
@@ -53,13 +52,12 @@ function InputForm({ category, classes }) {
         value={description}
         placeholder="descriptions"
         label="Description"
-        fullWidth
-        rows={4}
+        rowsMax={4}
         onChange={(e) => setDesc(e.target.value)}
       />
       <br />
       <br />
-      <Button variant="outlined" color="primary">
+      <Button variant="outlined" color="primary" onClick={handleClick}>
         Create
       </Button>
     </Fragment>
