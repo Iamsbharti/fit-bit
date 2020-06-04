@@ -23,7 +23,7 @@ function InputForm({ category, classes, createExercise, postCreateClose }) {
   const [muscles, setMuscles] = useState("");
   const [description, setDesc] = useState("");
   const handleClick = (event) => {
-    console.log("create click event");
+    //console.log("create click event");
     let id = uuidv4();
     createExercise({ id, title, muscles, description });
     postCreateClose();

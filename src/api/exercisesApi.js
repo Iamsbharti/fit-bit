@@ -19,7 +19,7 @@ export async function fetchExercises() {
 }
 
 export async function createExcercise(exercise) {
-  console.log("create-exercise", exercise);
+  //console.log("create-exercise", exercise);
   try {
     let { data, status } = await axios.post(url + "/createExercise", {
       id: exercise.id,

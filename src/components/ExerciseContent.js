@@ -35,7 +35,7 @@ function ExerciseContent({
   };
   //dispatch action upon component load
   useEffect(() => {
-    console.log("invoke", exercises.length);
+    //console.log("invoke", exercises.length);
     if (exercises.length === 0) {
       getExercises();
     }
