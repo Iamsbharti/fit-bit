@@ -35,11 +35,12 @@ function ExerciseContent({
   };
   //dispatch action upon component load
   useEffect(() => {
+    console.log("invoke", exercises.length);
     if (exercises.length === 0) {
       getExercises();
     }
   }, [getExercises, exercises.length]);
-  //console.log(category);
+  //console.log(exercises);
   //selected exercise
   const [exercise, setExercise] = useState({});
   const handleItemClick = (id) => {
@@ -67,7 +68,7 @@ function ExerciseContent({
                   </Typography>
                   <List component="ul" key={group}>
                     {exercise.map(({ title, id }) => (
-                      <ListItem key={id}>
+                      <ListItem key={id} button>
                         <ListItemText
                           primary={title}
                           onClick={() => handleItemClick(id)}
