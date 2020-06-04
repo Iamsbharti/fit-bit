@@ -1,6 +1,7 @@
 import { url } from "./apiUtils";
 import axios from "axios";
 import { toast } from "react-toastify";
+
 export async function fetchExercises() {
   try {
     let { data, status } = await axios.get(url + "/getExercises");
@@ -21,7 +22,10 @@ export async function createExcercise(exercise) {
   console.log("create-exercise", exercise);
   try {
     let { data, status } = await axios.post(url + "/createExercise", {
-      exercise,
+      id: exercise.id,
+      title: exercise.title,
+      muscles: exercise.muscles,
+      description: exercise.description,
     });
     if (data && status === 200) {
       toast.success(`${data}`);

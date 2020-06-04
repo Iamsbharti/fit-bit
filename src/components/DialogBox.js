@@ -20,7 +20,7 @@ export default function ({ open, onCloseDialog }) {
           <DialogContentText>
             Enter these details and it will appear in the left pane
           </DialogContentText>
-          <InputForm />
+          <InputForm postCreateClose={handleClose} />
         </DialogContent>
       </Dialog>
     </div>

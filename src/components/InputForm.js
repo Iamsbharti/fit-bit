@@ -8,6 +8,8 @@ import {
   withStyles,
 } from "@material-ui/core";
 import { connect } from "react-redux";
+import { createExercise } from "../redux/actions/exercisesAction";
+import { v4 as uuidv4 } from "uuid";
 import PropsTypes from "prop-types";
 
 const styles = (theme) => ({
@@ -16,11 +18,16 @@ const styles = (theme) => ({
     marginTop: 10,
   },
 });
-function InputForm({ category, classes }) {
+function InputForm({ category, classes, createExercise, postCreateClose }) {
   const [title, setTilte] = useState("");
   const [muscles, setMuscles] = useState("");
   const [description, setDesc] = useState("");
-  const handleClick = (event) => {};
+  const handleClick = (event) => {
+    console.log("create click event");
+    let id = uuidv4();
+    createExercise({ id, title, muscles, description });
+    postCreateClose();
+  };
   return (
     <Fragment>
       <TextField
@@ -66,7 +73,14 @@ function InputForm({ category, classes }) {
 const mapStateToProps = ({ muscles }) => ({
   category: muscles,
 });
+const mapActionToProps = {
+  createExercise,
+};
 InputForm.propTypes = {
   category: PropsTypes.array.isRequired,
+  createExercise: PropsTypes.func.isRequired,
 };
-export default connect(mapStateToProps)(withStyles(styles)(InputForm));
+export default connect(
+  mapStateToProps,
+  mapActionToProps
+)(withStyles(styles)(InputForm));

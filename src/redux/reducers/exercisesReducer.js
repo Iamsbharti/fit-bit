@@ -6,7 +6,7 @@ export default function (_exercises = exercises, action) {
     case GET_EXERCISES:
       return action.exercises;
     case ADD_EXERCISE:
-      return [..._exercises, ...action.exercise];
+      return [..._exercises, action.exercise];
     default:
       return _exercises;
   }

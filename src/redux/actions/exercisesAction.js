@@ -10,7 +10,7 @@ export function getExercises() {
 }
 
 export function createExercise(newExercise) {
-  console.log("create-action");
+  console.log("create-action", newExercise);
   return async (dispatch) => {
     let exercise = await exercisesApi.createExcercise(newExercise);
     dispatch({ type: ADD_EXERCISE, exercise });
