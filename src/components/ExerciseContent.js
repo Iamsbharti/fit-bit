@@ -38,10 +38,10 @@ function ExerciseContent({
   //dispatch action upon component load
   useEffect(() => {
     //console.log("invoke", exercises.length);
-    if (muscles.length > 0 || exercises.length === 0) {
+    if (rawExercisesObj.length === 0) {
       getExercises();
     }
-  }, [getExercises, exercises.length, muscles]);
+  }, [getExercises, rawExercisesObj.length]);
   //console.log(exercises);
   //selected exercise
   const [exercise, setExercise] = useState({});

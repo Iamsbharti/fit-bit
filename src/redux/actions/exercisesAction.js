@@ -10,7 +10,7 @@ export function getExercises() {
 }
 
 export function createExercise(newExercise) {
-  console.log("create-action", newExercise);
+  //console.log("create-action", newExercise);
   return async (dispatch) => {
     let exercise = await exercisesApi.createExcercise(newExercise);
     dispatch({ type: ADD_EXERCISE, exercise });
@@ -18,7 +18,7 @@ export function createExercise(newExercise) {
 }
 
 export function deleteExercise(exerciseId) {
-  console.log("delete action", exerciseId);
+  //console.log("delete action", exerciseId);
   return async (dispatch) => {
     let id = await exercisesApi.deleteExercise(exerciseId);
     dispatch({ type: DELETE_EXERCISE, id });
