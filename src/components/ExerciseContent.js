@@ -54,6 +54,7 @@ function ExerciseContent({
   const handleItemDelete = (id) => {
     console.log("invoke action for ", id);
     deleteExercise(id);
+    setExercise("");
   };
   useEffect(() => {
     setExercise("");
