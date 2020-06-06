@@ -36,3 +36,19 @@ export async function createExcercise(exercise) {
     toast.error(error.message);
   }
 }
+
+export async function deleteExercise(exerciseId) {
+  console.log("delete exercise", exerciseId);
+  try {
+    let { data, status } = await axios.delete(url + "/deleteExercise", {
+      id: exerciseId,
+    });
+    if (data && status === 200) {
+      toast.success(`${data}`);
+      return data;
+    }
+  } catch (error) {
+    console.warn(error.message);
+    console.log(error.message);
+  }
+}
