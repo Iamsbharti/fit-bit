@@ -20,7 +20,7 @@ export function createExercise(newExercise) {
 export function deleteExercise(exerciseId) {
   console.log("delete action", exerciseId);
   return async (dispatch) => {
-    let title = await exercisesApi.deleteExercise(exerciseId);
-    dispatch({ type: DELETE_EXERCISE, title });
+    let id = await exercisesApi.deleteExercise(exerciseId);
+    dispatch({ type: DELETE_EXERCISE, id });
   };
 }

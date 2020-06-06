@@ -13,12 +13,14 @@ import { Edit, Delete } from "@material-ui/icons";
 import { ToastContainer } from "react-toastify";
 import { connect } from "react-redux";
 import { getExercises } from "../redux/actions/exercisesAction";
+import { deleteExercise } from "../redux/actions/exercisesAction";
 function ExerciseContent({
   exercises,
   getExercises,
   muscles,
   category,
   rawExercisesObj,
+  deleteExercise,
 }) {
   const styles = {
     padding: 20,
@@ -47,6 +49,11 @@ function ExerciseContent({
     let selectedExercise = rawExercisesObj.find((exe) => exe.id === id);
     //console.log(selectedExercise);
     setExercise(selectedExercise);
+  };
+  //delete exercise
+  const handleItemDelete = (id) => {
+    console.log("invoke action for ", id);
+    deleteExercise(id);
   };
   useEffect(() => {
     setExercise("");
@@ -77,7 +84,10 @@ function ExerciseContent({
                           <Edit />
                         </IconButton>
                         <ListItemSecondaryAction>
-                          <IconButton edge="end">
+                          <IconButton
+                            edge="end"
+                            onClick={() => handleItemDelete(id)}
+                          >
                             <Delete />
                           </IconButton>
                         </ListItemSecondaryAction>
@@ -141,5 +151,6 @@ function mapStateToProps({ muscles, exercises, category }) {
 }
 const mapActionsToProps = {
   getExercises,
+  deleteExercise,
 };
 export default connect(mapStateToProps, mapActionsToProps)(ExerciseContent);
