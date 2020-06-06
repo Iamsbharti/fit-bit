@@ -8,6 +8,6 @@ export default function (_exercises = exercises, action) {
     case ADD_EXERCISE:
       return [..._exercises, action.exercise];
     default:
-      return [];
+      return _exercises;
   }
 }
