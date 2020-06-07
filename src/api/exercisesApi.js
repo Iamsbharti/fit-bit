@@ -53,3 +53,18 @@ export async function deleteExercise(exerciseId) {
     console.log(error.message);
   }
 }
+export async function editExercise(updatedExercise) {
+  console.log("updating exercise", updatedExercise);
+  try {
+    let { data, status } = await axios.put(url + "/editExercise", {
+      updatedExercise,
+    });
+    if (data && status === 200) {
+      toast.success(`${updatedExercise.title} updated`);
+      return updatedExercise;
+    }
+  } catch (error) {
+    console.warn(error.message);
+    toast.error(error.message);
+  }
+}

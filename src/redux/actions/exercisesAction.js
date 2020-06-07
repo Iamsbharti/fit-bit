@@ -1,4 +1,9 @@
-import { GET_EXERCISES, ADD_EXERCISE, DELETE_EXERCISE } from "./actionTypes";
+import {
+  GET_EXERCISES,
+  ADD_EXERCISE,
+  DELETE_EXERCISE,
+  EDIT_EXERCISE,
+} from "./actionTypes";
 import * as exercisesApi from "../../api/exercisesApi";
 
 export function getExercises() {
@@ -22,5 +27,12 @@ export function deleteExercise(exerciseId) {
   return async (dispatch) => {
     let id = await exercisesApi.deleteExercise(exerciseId);
     dispatch({ type: DELETE_EXERCISE, id });
+  };
+}
+export function editExercise(editedExercise) {
+  console.log("edit action", editedExercise);
+  return async (dispatch) => {
+    let id = await exercisesApi.editExercise(editedExercise);
+    dispatch({ type: EDIT_EXERCISE, id });
   };
 }
