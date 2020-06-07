@@ -8,7 +8,7 @@ import {
   withStyles,
 } from "@material-ui/core";
 import { connect } from "react-redux";
-import { createExercise } from "../redux/actions/exercisesAction";
+import { createExercise, editExercise } from "../redux/actions/exercisesAction";
 import { v4 as uuidv4 } from "uuid";
 import PropsTypes from "prop-types";
 
@@ -18,15 +18,29 @@ const styles = (theme) => ({
     marginTop: 10,
   },
 });
-function InputForm({ category, classes, createExercise, postCreateClose }) {
-  const [title, setTilte] = useState("");
-  const [muscles, setMuscles] = useState("");
-  const [description, setDesc] = useState("");
+function InputForm({
+  category,
+  classes,
+  createExercise,
+  postCreateClose,
+  mode,
+  exerciseToEdit,
+  editExercise,
+}) {
+  const [title, setTilte] = useState(mode ? exerciseToEdit.title : "");
+  const [muscles, setMuscles] = useState(mode ? exerciseToEdit.muscles : "");
+  const [description, setDesc] = useState(
+    mode ? exerciseToEdit.description : ""
+  );
   const handleClick = (event) => {
     //console.log("create click event");
     let id = uuidv4();
-    createExercise({ id, title, muscles, description });
-    postCreateClose();
+    if (mode) {
+      editExercise(exerciseToEdit);
+    } else {
+      createExercise({ id, title, muscles, description });
+      postCreateClose();
+    }
   };
   return (
     <Fragment>
@@ -65,7 +79,7 @@ function InputForm({ category, classes, createExercise, postCreateClose }) {
       <br />
       <br />
       <Button variant="outlined" color="primary" onClick={handleClick}>
-        Create
+        {mode ? "Edit" : "Create"}
       </Button>
     </Fragment>
   );
@@ -75,6 +89,7 @@ const mapStateToProps = ({ muscles }) => ({
 });
 const mapActionToProps = {
   createExercise,
+  editExercise,
 };
 InputForm.propTypes = {
   category: PropsTypes.array.isRequired,

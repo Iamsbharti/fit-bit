@@ -6,7 +6,7 @@ import {
 } from "../actions/actionTypes";
 //import { exercises } from "../defaultStore";
 export default function (_exercises = [], action) {
-  console.log("reducers", action.type, action.id);
+  console.log("reducers", action.type, action.updatedExercise);
   switch (action.type) {
     case GET_EXERCISES:
       return action.exercises;

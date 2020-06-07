@@ -14,6 +14,7 @@ import { ToastContainer } from "react-toastify";
 import { connect } from "react-redux";
 import { getExercises } from "../redux/actions/exercisesAction";
 import { deleteExercise } from "../redux/actions/exercisesAction";
+import InputForm from "./InputForm";
 function ExerciseContent({
   exercises,
   getExercises,
@@ -50,6 +51,7 @@ function ExerciseContent({
     let selectedExercise = rawExercisesObj.find((exe) => exe.id === id);
     //console.log(selectedExercise);
     setExercise(selectedExercise);
+    setEditMode(false);
   };
   //delete exercise
   const handleItemDelete = (id) => {
@@ -61,6 +63,21 @@ function ExerciseContent({
     setExercise("");
   }, [category]);
   //console.log(exercise);
+  /*edit mode*/
+  const [editMode, setEditMode] = useState(false);
+  const [exerciseToEdit, setExerciseToEdit] = useState({});
+  const handleEditExercise = (id) => {
+    //replace older to be edited exercise
+    setExerciseToEdit({});
+    console.log("before", editMode);
+    //toggle editMode
+    setEditMode(!editMode);
+    console.log("after", editMode);
+    //set exercise to be edited used by InputForm
+    setExerciseToEdit(rawExercisesObj.find((ex) => ex.id === id));
+    console.log(exerciseToEdit);
+  };
+
   return (
     <Fragment>
       <Grid container spacing={2} style={{ marginTop: 3 }}>
@@ -82,7 +99,7 @@ function ExerciseContent({
                           primary={title}
                           onClick={() => handleItemClick(id)}
                         />
-                        <IconButton>
+                        <IconButton onClick={() => handleEditExercise(id)}>
                           <Edit />
                         </IconButton>
                         <ListItemSecondaryAction>
@@ -103,7 +120,9 @@ function ExerciseContent({
         </Grid>
         <Grid item sm>
           <Paper style={styles}>
-            {exercise.title ? (
+            {editMode && exerciseToEdit ? (
+              <InputForm mode={editMode} exerciseToEdit={exerciseToEdit} />
+            ) : exercise.title ? (
               <Fragment>
                 <Typography variant="h4">{exercise.title}</Typography>
                 <br />
