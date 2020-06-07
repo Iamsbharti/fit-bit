@@ -46,6 +46,7 @@ function ExerciseContent({
   //selected exercise
   const [exercise, setExercise] = useState({});
   const handleItemClick = (id) => {
+    console.log("itemclick", id);
     let selectedExercise = rawExercisesObj.find((exe) => exe.id === id);
     //console.log(selectedExercise);
     setExercise(selectedExercise);

@@ -3,7 +3,7 @@ import {
   ADD_EXERCISE,
   DELETE_EXERCISE,
 } from "../actions/actionTypes";
-import { exercises } from "../defaultStore";
+//import { exercises } from "../defaultStore";
 export default function (_exercises = [], action) {
   //console.log("reducers", action.type, action.id);
   switch (action.type) {

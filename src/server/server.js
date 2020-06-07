@@ -6,6 +6,7 @@ import { getMusclesRoute } from "./getMusclesRoute.js";
 import { exercisesRoute } from "./exercisesRoute.js";
 import { createExerciseRoute } from "./createExerciseRoute.js";
 import { deleteExerciseRoute } from "./deleteExerciseRoute.js";
+import { updateExerciseRoute } from "./updateExerciseRoute.js";
 //initialize a port
 let port = process.env.PORT || "4200";
 
@@ -34,3 +35,6 @@ createExerciseRoute(app);
 
 //delete exercise route
 deleteExerciseRoute(app);
+
+//update exercise route
+updateExerciseRoute(app);
