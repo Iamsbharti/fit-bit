@@ -6,7 +6,12 @@ export async function exercisesRoute(app) {
     let db = await connectDb();
     //get exercises collection
     console.log("Get Exercise Route");
-    let exercises = await db.collection("exercises").find().toArray();
-    res.status(200).send(exercises);
+    //let exercises = await db.collection("exercises").find().toArray();
+    await db
+      .collection("exercises")
+      .find()
+      .toArray((error, result) => {
+        error ? res.status(500).send(error) : res.status(200).send(result);
+      });
   });
 }
