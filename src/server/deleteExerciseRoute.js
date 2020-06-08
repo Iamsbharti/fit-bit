@@ -19,7 +19,7 @@ export async function deleteExerciseRoute(app) {
     //get title and define status
     let status = 0;
     _title === undefined ? (status = 500) : (status = 200);
-    console.log(status);
+    //console.log(status);
 
     //send status
     res

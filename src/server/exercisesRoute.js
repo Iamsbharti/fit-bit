@@ -5,6 +5,7 @@ export async function exercisesRoute(app) {
     //intiliaze db
     let db = await connectDb();
     //get exercises collection
+    console.log("Get Exercise Route");
     let exercises = await db.collection("exercises").find().toArray();
     res.status(200).send(exercises);
   });

@@ -6,11 +6,15 @@ export async function createExerciseRoute(app) {
     let db = await connectDb();
     //get request body
     let exercise = req.body;
-    console.log(exercise);
+    console.log("create route");
 
     //add the exercise
-    await db.collection("exercises").insertOne(exercise);
-
-    res.status(200).send(`${exercise.title} created`);
+    await db.collection("exercises").insertOne(exercise, (error, result) => {
+      const title = result.ops[0].title;
+      console.log(title);
+      error
+        ? res.status(500).send(error)
+        : res.status(200).send(`${title} created`);
+    });
   });
 }

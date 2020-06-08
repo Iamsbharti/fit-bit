@@ -39,9 +39,11 @@ function InputForm({
     if (mode) {
       let { id } = exerciseToEdit;
       editExercise({ id, title, muscles, description });
+      //toggle current mode to exit the edit mode
       toggleMode(!mode);
     } else {
       createExercise({ id, title, muscles, description });
+      //close the dialog
       postCreateClose();
     }
   };

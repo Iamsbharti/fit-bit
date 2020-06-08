@@ -8,7 +8,8 @@ export function updateExerciseRoute(app) {
     let collection = db.collection("exercises");
     //get body
     let { id, title, muscles, description } = req.body;
-    console.log("updating", id, title, muscles, description);
+    //console.log("updating", id, title, muscles, description);
+    console.log("Update Route");
     await collection.updateOne(
       { id },
       {

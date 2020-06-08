@@ -55,7 +55,7 @@ function ExerciseContent({
   };
   //delete exercise
   const handleItemDelete = (id) => {
-    console.log("invoke action for ", id);
+    //console.log("invoke action for ", id);
     deleteExercise(id);
     setExercise("");
   };
@@ -69,13 +69,13 @@ function ExerciseContent({
   const handleEditExercise = (id) => {
     //replace older to be edited exercise
     setExerciseToEdit({});
-    console.log("before", editMode);
+    //console.log("before", editMode);
     //toggle editMode
     setEditMode(!editMode);
-    console.log("after", editMode);
+    //console.log("after", editMode);
     //set exercise to be edited used by InputForm
     setExerciseToEdit(rawExercisesObj.find((ex) => ex.id === id));
-    console.log(exerciseToEdit);
+    //console.log(exerciseToEdit);
   };
 
   return (

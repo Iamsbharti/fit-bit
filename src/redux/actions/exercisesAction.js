@@ -30,7 +30,7 @@ export function deleteExercise(exerciseId) {
   };
 }
 export function editExercise(editedExercise) {
-  console.log("edit action", editedExercise);
+  //console.log("edit action", editedExercise);
   return async (dispatch) => {
     let updatedExercise = await exercisesApi.editExercise(editedExercise);
     dispatch({ type: EDIT_EXERCISE, updatedExercise });

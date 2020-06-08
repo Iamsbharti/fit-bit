@@ -5,7 +5,7 @@ export async function getMusclesRoute(app) {
     let db = await connectDb();
     //get muscles collection
     let muscles = await db.collection("muscles").find().toArray();
-    console.info("muscles-collection", muscles);
+    console.info("get muscles route");
     res.status(200).send(muscles);
   });
 }

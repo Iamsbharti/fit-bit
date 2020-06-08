@@ -54,7 +54,7 @@ export async function deleteExercise(exerciseId) {
   }
 }
 export async function editExercise(updatedExercise) {
-  console.log("updating exercise", updatedExercise);
+  //console.log("updating exercise", updatedExercise);
   const { id, title, muscles, description } = updatedExercise;
   try {
     let { data, status } = await axios.put(url + "/editExercise", {
