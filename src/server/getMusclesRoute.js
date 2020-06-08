@@ -4,14 +4,12 @@ export async function getMusclesRoute(app) {
     //initialize db
     let db = await connectDb();
     //get muscles collection
-    //let muscles = await db.collection("muscles").find().toArray();
+    console.info("get muscles route");
     await db
       .collection("muscles")
       .find()
       .toArray((error, result) => {
         error ? res.status(500).send(error) : res.status(200).send(result);
       });
-    console.info("get muscles route");
-    //res.status(200).send(muscles);
   });
 }
