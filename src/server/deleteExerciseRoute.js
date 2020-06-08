@@ -1,5 +1,5 @@
 import { connectDb } from "./connect-db.js";
-
+import { getExerciseById } from "./getExerciseById.js";
 export async function deleteExerciseRoute(app) {
   app.delete("/deleteExercise", async (req, res) => {
     //init db
@@ -8,24 +8,25 @@ export async function deleteExerciseRoute(app) {
     //get id from body
     let exerciseId = req.body.id;
     console.log(`${exerciseId} to be deleted`);
-    //delete from exercise collection
-    let exercises = await db
-      .collection("exercises")
-      .find({ id: exerciseId })
-      .toArray();
-    let _title = exercises[0].title;
-    await db.collection("exercises").deleteOne({ id: exerciseId });
+    //get exercise
+    let _title = "";
+    getExerciseById(exerciseId, (result) => {
+      console.log("result", result);
+      _title = result.length > 0 ? result[0].title : "";
+      deleteExercise(_title, exerciseId, result.length);
+    });
 
-    //get title and define status
-    let status = 0;
-    _title === undefined ? (status = 500) : (status = 200);
-    //console.log(status);
-
-    //send status
-    res
-      .status(status)
-      .send(
-        status === 200 ? `${exercises[0].title} Deleted` : "Error in Delete"
-      );
+    //delete
+    async function deleteExercise(title, id, len) {
+      return len > 0
+        ? await db
+            .collection("exercises")
+            .deleteOne({ id: exerciseId }, (error, result) => {
+              error
+                ? res.status(500).send(error)
+                : res.status(200).send(`${_title} Deleted`);
+            })
+        : res.status(404).send("Exercise Not Found");
+    }
   });
 }
