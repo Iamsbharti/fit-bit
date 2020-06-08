@@ -63,7 +63,7 @@ function ExerciseContent({
     setExercise("");
   }, [category]);
   //console.log(exercise);
-  /*edit mode*/
+  /*---edit mode---*/
   const [editMode, setEditMode] = useState(false);
   const [exerciseToEdit, setExerciseToEdit] = useState({});
   const handleEditExercise = (id) => {

@@ -27,7 +27,7 @@ function InputForm({
   exerciseToEdit,
   editExercise,
 }) {
-  const [title, setTilte] = useState(mode ? exerciseToEdit.title : "");
+  const [title, setTitle] = useState(mode ? exerciseToEdit.title : "");
   const [muscles, setMuscles] = useState(mode ? exerciseToEdit.muscles : "");
   const [description, setDesc] = useState(
     mode ? exerciseToEdit.description : ""
@@ -36,7 +36,8 @@ function InputForm({
     //console.log("create click event");
     let id = uuidv4();
     if (mode) {
-      editExercise(exerciseToEdit);
+      let { id } = exerciseToEdit;
+      editExercise({ id, title, muscles, description });
     } else {
       createExercise({ id, title, muscles, description });
       postCreateClose();
@@ -52,7 +53,7 @@ function InputForm({
         label="Exercise"
         margin="dense"
         value={title}
-        onChange={(e) => setTilte(e.target.value)}
+        onChange={(e) => setTitle(e.target.value)}
       />
       <InputLabel htmlFor="muscles">Muscles</InputLabel>
       <Select

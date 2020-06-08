@@ -15,10 +15,18 @@ export default function (_exercises = [], action) {
     case DELETE_EXERCISE:
       return _exercises.filter((ex) => ex.id !== action.id);
     case EDIT_EXERCISE:
-      return _exercises.map((ex) => ex.id === action.updatedExercise.id, [
-        ..._exercises,
-        action.updatedExercise,
-      ]);
+      const { id, title, muscles, description } = action.updatedExercise;
+      return _exercises.map((ex) =>
+        ex.id === id
+          ? {
+              ...ex,
+              id: id,
+              title: title,
+              muscles: muscles,
+              description: description,
+            }
+          : ex
+      );
     default:
       return _exercises;
   }
