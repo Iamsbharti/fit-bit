@@ -121,7 +121,11 @@ function ExerciseContent({
         <Grid item sm>
           <Paper style={styles}>
             {editMode && exerciseToEdit ? (
-              <InputForm mode={editMode} exerciseToEdit={exerciseToEdit} />
+              <InputForm
+                mode={editMode}
+                exerciseToEdit={exerciseToEdit}
+                toggleMode={setEditMode}
+              />
             ) : exercise.title ? (
               <Fragment>
                 <Typography variant="h4">{exercise.title}</Typography>

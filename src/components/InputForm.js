@@ -26,6 +26,7 @@ function InputForm({
   mode,
   exerciseToEdit,
   editExercise,
+  toggleMode,
 }) {
   const [title, setTitle] = useState(mode ? exerciseToEdit.title : "");
   const [muscles, setMuscles] = useState(mode ? exerciseToEdit.muscles : "");
@@ -38,6 +39,7 @@ function InputForm({
     if (mode) {
       let { id } = exerciseToEdit;
       editExercise({ id, title, muscles, description });
+      toggleMode(!mode);
     } else {
       createExercise({ id, title, muscles, description });
       postCreateClose();
