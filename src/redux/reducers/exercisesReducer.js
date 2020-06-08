@@ -20,10 +20,10 @@ export default function (_exercises = [], action) {
         ex.id === id
           ? {
               ...ex,
-              id: id,
-              title: title,
-              muscles: muscles,
-              description: description,
+              id,
+              title,
+              muscles,
+              description,
             }
           : ex
       );
