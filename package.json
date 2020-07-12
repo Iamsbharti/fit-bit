@@ -31,8 +31,8 @@
     "uuid": "^8.1.0"
   },
   "scripts": {
-    "start": "run-p start:dev start:api",
-    "start:dev": "react-scripts start",
+    "start-fe": "react-scripts start",
+    "start": "run-p server start-fe",
     "server": "nodemon src/server",
     "startdb": "node src/server/connect-db.js",
     "init": "node src/server/initialize-db.js",
