@@ -7,7 +7,7 @@ import { exercisesRoute } from "./exercisesRoute.js";
 import { createExerciseRoute } from "./createExerciseRoute.js";
 import { deleteExerciseRoute } from "./deleteExerciseRoute.js";
 import { updateExerciseRoute } from "./updateExerciseRoute.js";
-//initialize a port
+//initialize a port for prod too
 let port = process.env.PORT || "4200";
 
 //initialize the express app
