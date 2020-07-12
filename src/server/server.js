@@ -40,9 +40,6 @@ deleteExerciseRoute(app);
 updateExerciseRoute(app);
 
 //production config
-/*if (process.env.NODE_ENV === "production") {
+if (process.env.NODE_ENV === "production") {
   app.use(express.static(path.resolve(__dirname, "../build")));
-  app.get("/*", (req, res) => {
-    res.sendFile(path.resolve("index.html"));
-  });
-}*/
+}

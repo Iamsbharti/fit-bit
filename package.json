@@ -31,11 +31,12 @@
     "uuid": "^8.1.0"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "server": "pm2 start src/server",
+    "start": "run-p start:dev start:api",
+    "start:dev": "react-scripts start",
+    "server": "nodemon src/server",
     "startdb": "node src/server/connect-db.js",
     "init": "node src/server/initialize-db.js",
-    "build": "npm run server && react-scripts build",
+    "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
