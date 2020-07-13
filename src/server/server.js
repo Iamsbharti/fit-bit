@@ -7,6 +7,7 @@ import { exercisesRoute } from "./exercisesRoute.js";
 import { createExerciseRoute } from "./createExerciseRoute.js";
 import { deleteExerciseRoute } from "./deleteExerciseRoute.js";
 import { updateExerciseRoute } from "./updateExerciseRoute.js";
+
 //initialize a port
 let port = process.env.PORT || "4200";
 
@@ -40,3 +41,6 @@ deleteExerciseRoute(app);
 updateExerciseRoute(app);
 
 //production config
+if (process.env.NODE_ENV === "production") {
+  app.use(express.static(path.join(__dirname, "../../build")));
+}
