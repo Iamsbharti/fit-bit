@@ -2,6 +2,7 @@ import express from "express";
 import bodyParser from "body-parser";
 import cors from "cors";
 import path from "path";
+import dotenv from "dotenv";
 import { getMusclesRoute } from "./getMusclesRoute.js";
 import { exercisesRoute } from "./exercisesRoute.js";
 import { createExerciseRoute } from "./createExerciseRoute.js";
@@ -10,7 +11,7 @@ import { updateExerciseRoute } from "./updateExerciseRoute.js";
 
 //initialize a port
 let port = process.env.PORT || "4200";
-
+dotenv.config();
 //initialize the express app
 let app = express();
 
